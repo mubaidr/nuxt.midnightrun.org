@@ -1,6 +1,6 @@
 import path from "path";
 
-const isProd = process.env.NODE_ENV === "production";
+const IS_DEV = process.env.NODE_ENV === "development";
 
 export default defineNuxtConfig({
   alias: {
@@ -12,23 +12,45 @@ export default defineNuxtConfig({
     public: path.resolve(__dirname, "./public"),
     test: path.resolve(__dirname, "./test"),
   },
-  app: {
-    head: {
-      link: [
-        { rel: "dns-prefetch", href: "https://fonts.bunny.net/" },
-        { rel: "preconnect", href: "https://fonts.bunny.net/" },
-        { rel: "preconnect", href: "https://fonts.bunny.net/", crossorigin: "" },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.bunny.net/css?family=Inter:400,600,900|Lora:400,600&display=swap",
-        },
-        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-      ],
-    },
-  },
+  // app: {
+  //   head: {
+  //     link: [
+  //       { rel: "dns-prefetch", href: "https://fonts.bunny.net/" },
+  //       { rel: "preconnect", href: "https://fonts.bunny.net/" },
+  //       { rel: "preconnect", href: "https://fonts.bunny.net/", crossorigin: "" },
+  //       {
+  //         rel: "stylesheet",
+  //         href: "https://fonts.bunny.net/css?family=Inter:400,600,900|Lora:400,600&display=swap",
+  //       },
+  //       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+  //     ],
+  //   },
+  // },
   compatibilityDate: "2025-01-01",
   css: ["app/assets/global.scss"],
-  devtools: { enabled: !isProd },
+  colorMode: {
+    preference: "system", // default theme
+    dataValue: "theme", // activate data-theme in <html> tag
+    classSuffix: "",
+    storage: "cookie",
+  },
+  content: {},
+  devtools: {
+    enabled: IS_DEV,
+
+    timeline: {
+      enabled: true,
+    },
+  },
+  experimental: {
+    asyncContext: true,
+    typedPages: true,
+    viewTransition: true,
+  },
+  eslint: {
+    checker: false,
+    config: true,
+  },
   future: {
     compatibilityVersion: 4,
     typescriptBundlerResolution: true,
@@ -53,6 +75,10 @@ export default defineNuxtConfig({
       cookieSecure: true,
     },
   },
+  icon: {
+    size: "20px",
+    collections: ["ph"],
+  },
   image: {
     densities: [1, 2],
     screens: {
@@ -66,33 +92,54 @@ export default defineNuxtConfig({
     },
   },
   imports: {
-    dirs: ["store"],
+    dirs: ["app/composables/**", "app/stores/**"],
+    addons: {
+      vueTemplate: true,
+    },
   },
   modules: [
-    "@nuxtjs/i18n",
-    "@nuxt/ui",
-    "@pinia/nuxt",
-    "nuxt-delay-hydration",
-    "@nuxtjs/robots",
-    "@nuxt/image",
-    "nuxt-security",
+    "@nuxt/content",
     "@nuxt/devtools",
     "@nuxt/eslint",
+    "@nuxt/image",
+    "@nuxt/ui",
+    "@nuxthq/studio",
+    "@nuxtjs/i18n",
+    "@nuxtjs/robots",
+    "@pinia/nuxt",
+    "nuxt-delay-hydration",
+    "nuxt-security",
   ],
   nitro: {
     compressPublicAssets: true,
-    publicAssets: isProd
-      ? [
+    publicAssets: IS_DEV
+      ? []
+      : [
           {
             baseURL: "/_nuxt",
             maxAge: 31536000,
             dir: "~/.nuxt/dist/client/_nuxt",
           },
-        ]
-      : [],
+        ],
+    timing: IS_DEV,
+  },
+  router: {
+    options: {
+      scrollBehaviorType: "smooth",
+    },
   },
   runtimeConfig: {
-    public: {},
+    nuxtSessionPassword: process.env.NUXT_SESSION_PASSWORD,
+    dbUrl: process.env.DB_URL,
+    smtpHost: process.env.SMTP_HOST,
+    smtpPort: parseInt(process.env.SMTP_PORT || "1025", 10),
+    smtpUser: process.env.SMTP_USER,
+    smtpPass: process.env.SMTP_PASS,
+    smtpDefaultsFrom: process.env.SMTP_DEFAULTS_FROM,
+    public: {
+      appHost: process.env.APP_HOST,
+      smtpDefaultsFrom: process.env.SMTP_DEFAULTS_FROM,
+    },
   },
   robots: {
     groups: [
@@ -110,24 +157,15 @@ export default defineNuxtConfig({
       crossOriginEmbedderPolicy: "unsafe-none",
       contentSecurityPolicy: {
         "base-uri": ["'self'"],
-        "font-src": ["'self'", "https:", "data:", "fonts.bunny.net"],
+        "font-src": ["'self'", "https:", "data:"],
         "form-action": ["'self'"],
         "frame-ancestors": ["'self'"],
-        "img-src": ["*", "'self'", "data:", "https://d21tg1j9k9a9uf.cloudfront.net"],
+        "img-src": ["*", "'self'", "data:"],
         "object-src": ["'none'"],
         "script-src-attr": ["'none'"],
-        "style-src": ["'self'", "https:", "'unsafe-inline'", "fonts.bunny.net"],
+        "style-src": ["'self'", "https:", "'unsafe-inline'"],
         "upgrade-insecure-requests": true,
-        "script-src": [
-          "'self'",
-          "'unsafe-inline'",
-          "'unsafe-eval'",
-          "'wasm-unsafe-eval'",
-          "data:",
-          "blob:",
-          "https://storage.googleapis.com",
-          "https://cdn.jsdelivr.net",
-        ],
+        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'", "'wasm-unsafe-eval'", "data:", "blob:"],
       },
       originAgentCluster: "?1",
       referrerPolicy: "no-referrer",
@@ -167,7 +205,26 @@ export default defineNuxtConfig({
     csrf: false,
   },
   ssr: true,
-  // typescript: {},
+  studio: {
+    gitInfo: {
+      name: "nuxt.midnightrun.org",
+      owner: "mubaidr",
+      url: "https://github.com/mubaidr/nuxt.midnightrun.org",
+    },
+  },
+  tailwindcss: {
+    editorSupport: true,
+    viewer: true,
+  },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        strictNullChecks: true,
+      },
+      exclude: ["./.generated/**/*"],
+    },
+    typeCheck: "build",
+  },
   vite: {
     css: {
       preprocessorOptions: {

@@ -1,56 +1,9 @@
 <template>
-  <div id="app" :class="$style.app">
+  <div>
     <slot />
-
-    <vue-footer :languages="languages" :themes="themes" :selected-locale="locale" @locale-change="onLocaleChange" />
-    <vue-back-to-top />
   </div>
 </template>
 
-<script setup lang="ts">
-import { useRouter } from "vue-router";
-import { computed } from "vue";
-import { useI18n, useLocaleHead, useSwitchLocalePath } from "#i18n";
-import VueBackToTop from "../components/behavior/VueBackToTop/VueBackToTop.vue";
-import VueFooter from "../components/navigation/VueFooter/VueFooter.vue";
-import { useHead } from "#imports";
-import type { IItem } from "~/interfaces/IItem";
+<script setup lang="ts"></script>
 
-// Deps
-const { locale, setLocale } = useI18n();
-const { push } = useRouter();
-const i18nHead = useLocaleHead();
-const switchLocalePath = useSwitchLocalePath();
-
-// Config
-useHead({
-  htmlAttrs: { lang: locale.value },
-  link: [...(i18nHead.value.link || [])],
-  meta: [...(i18nHead.value.meta || [])],
-});
-
-// Data
-const languages = computed(() => [
-  { label: "English", value: "en-US" },
-  { label: "Deutsch", value: "de-DE" },
-]);
-const themes = computed(() => [
-  { label: "System", value: "system" },
-  { label: "Light", value: "light" },
-  { label: "Dark", value: "dark" },
-]);
-
-// Event Handler
-const onLocaleChange = async (newLocale: IItem) => {
-  await setLocale(newLocale.value);
-  await push(switchLocalePath(newLocale.value));
-};
-</script>
-
-<style lang="scss" module>
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-</style>
+<style lang="scss" module></style>

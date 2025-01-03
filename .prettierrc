@@ -2,7 +2,7 @@
   "arrowParens": "always",
   "bracketSpacing": true,
   "endOfLine": "lf",
-  "plugins": ["prettier-plugin-prisma"],
+  "plugins": ["prettier-plugin-prisma", "prettier-plugin-tailwindcss"],
   "printWidth": 120,
   "semi": true,
   "singleQuote": false,
