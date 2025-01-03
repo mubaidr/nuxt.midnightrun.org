@@ -1,0 +1,9 @@
+*.yml
+node_modules
+storybook-static
+coverage
+.nuxt
+.output
+dist
+interfaces/graphql
+interfaces/swagger.ts
