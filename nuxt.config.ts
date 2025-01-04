@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   // },
   compatibilityDate: "2025-01-01",
   components: {
-    dirs: ["app/components/**"],
+    dirs: ["app/components/"],
   },
   css: ["app/assets/global.scss"],
   colorMode: {
@@ -111,8 +111,8 @@ export default defineNuxtConfig({
     dirs: [
       "app/composables/**",
       "app/stores/**",
-      "server/utils/**",
       "app/utils/**",
+      "server/utils/**",
     ],
     addons: {
       vueTemplate: true,
@@ -178,7 +178,35 @@ export default defineNuxtConfig({
       },
     ],
   },
-  routeRules: {},
+  routeRules: {
+    "/": {
+      prerender: true,
+    },
+    "/about": {
+      prerender: true,
+    },
+    "/contact": {
+      prerender: true,
+    },
+    "/faqs": {
+      prerender: true,
+    },
+    "/help": {
+      prerender: true,
+    },
+    "/login": {
+      prerender: true,
+    },
+    "/privacy-policy": {
+      prerender: true,
+    },
+    "/register": {
+      prerender: true,
+    },
+    "/terms-of-service": {
+      prerender: true,
+    },
+  },
   security: {
     headers: {
       crossOriginResourcePolicy: "cross-origin",
@@ -234,10 +262,10 @@ export default defineNuxtConfig({
       preflight: { statusCode: 204 },
     },
     allowedMethodsRestricter: { methods: "*" },
-    hidePoweredBy: true,
+    hidePoweredBy: false,
     basicAuth: false,
-    enabled: true,
-    csrf: false,
+    enabled: !IS_DEV,
+    csrf: true,
   },
   ssr: true,
   studio: {
