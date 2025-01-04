@@ -5,11 +5,6 @@ const { loggedIn } = useUserSession()
 const links: Array<Array<DropdownItem>> = [
   [
     {
-      label: "Current Jobs",
-      to: "/vacancy",
-      activeClass: "text-primary",
-    },
-    {
       label: "About",
       to: "/about",
       activeClass: "text-primary",
@@ -63,7 +58,7 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
             alt="logo"
             class="h-10 w-10"
           />
-          <span class="text-xl font-bold">HRD1902</span>
+          <span class="text-xl font-bold">Midnight Run</span>
         </NuxtLink>
       </div>
 

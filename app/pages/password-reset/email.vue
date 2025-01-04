@@ -21,7 +21,7 @@ definePageMeta({
     <p class="mt-4 text-center text-sm font-light">
       If you don't see the email in your inbox, please check your spam folder.
       You can also add the following email address to your safe senders list:
-      <span class="font-mono">support@hrd1902.com.pk</span>
+      <span class="font-mono">support@midnightrun.org</span>
     </p>
 
     <br />

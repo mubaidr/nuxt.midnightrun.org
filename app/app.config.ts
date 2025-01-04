@@ -1,7 +1,7 @@
 export default defineAppConfig({
   ui: {
     // base colors
-    primary: "sky",
+    primary: "green",
     gray: "stone",
     // component defaults
     alert: {
