@@ -1,0 +1,1 @@
+-- TODO: add checks for columns for each table

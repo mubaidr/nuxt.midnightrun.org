@@ -1,12 +1,13 @@
 {
   "arrowParens": "always",
   "bracketSpacing": true,
-  "endOfLine": "lf",
-  "plugins": ["prettier-plugin-prisma", "prettier-plugin-tailwindcss"],
-  "printWidth": 120,
-  "semi": true,
+  "htmlSelfClosing": false,
+  "htmlWhitespaceSensitivity": "ignore",
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "semi": false,
+  "singleAttributePerLine": true,
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "all",
-  "vueIndentScriptAndStyle": false
+  "useTabs": false
 }

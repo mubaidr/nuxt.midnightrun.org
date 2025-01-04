@@ -1,28 +1,30 @@
-import { mergeConfig } from "vite";
-import { resolve as _resolve } from "path";
-import vue from "@vitejs/plugin-vue";
+import { mergeConfig } from "vite"
+import { resolve as _resolve } from "path"
+import vue from "@vitejs/plugin-vue"
 
-export const stories = ["../app/**/*.stories.@(js|jsx|ts|tsx)"];
-export const staticDirs = ["../public"];
+export const stories = ["../app/**/*.stories.@(js|jsx|ts|tsx)"]
+export const staticDirs = ["../public"]
 export const addons = [
   "@storybook/addon-links",
   "@storybook/addon-essentials",
   "@storybook/addon-interactions",
   "@vuesion/storybook-theme-switcher",
   "@storybook/addon-a11y",
-];
+]
 export const framework = {
   name: "@storybook/vue3-vite",
   options: {},
-};
+}
 export const core = {
   disableTelemetry: true,
   builder: "@storybook/builder-vite",
-};
-export const docs = {};
-export const features = {};
-export async function viteFinal(config, { configType }) {
-  const vueIdx = config.plugins.findIndex((plugin) => plugin.name === "vite:vue");
+}
+export const docs = {}
+export const features = {}
+export async function viteFinal(config) {
+  const vueIdx = config.plugins.findIndex(
+    (plugin) => plugin.name === "vite:vue",
+  )
   config.plugins.splice(
     vueIdx,
     1,
@@ -33,7 +35,7 @@ export async function viteFinal(config, { configType }) {
         },
       },
     }),
-  );
+  )
 
   return mergeConfig(config, {
     css: {
@@ -61,5 +63,5 @@ export async function viteFinal(config, { configType }) {
         public: _resolve(__dirname, "../public"),
       },
     },
-  });
+  })
 }

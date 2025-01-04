@@ -1,0 +1,30 @@
+.hithere {
+  animation-delay: 5s;
+  animation-timing-function: ease;
+  animation-duration: 5s;
+  animation-name: hithere;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hithere {
+  10% {
+    transform: rotate(-0.5deg) scale(1.015);
+  }
+
+  12.5% {
+    transform: rotate(0.5deg) scale(1.015);
+  }
+
+  15% {
+    transform: rotate(-0.5deg) scale(1.015);
+  }
+
+  17.5% {
+    transform: rotate(0.5deg) scale(1.015);
+  }
+
+  /* 2 sec animation, rest is delay between animations */
+  30% {
+    transform: none;
+  }
+}

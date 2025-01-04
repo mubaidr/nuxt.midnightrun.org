@@ -1,4 +1,4 @@
-import { beforeEach, vi, afterEach } from "vitest";
+import { beforeEach, vi, afterEach } from "vitest"
 
 export const TestComponent = (
   setup: (props?: any, options?: any) => void,
@@ -8,39 +8,39 @@ export const TestComponent = (
   setup,
   template,
   components,
-});
+})
 
-export const triggerDocument: any = {};
-export const triggerWindow: any = {};
+export const triggerDocument: any = {}
+export const triggerWindow: any = {}
 
 if (typeof beforeEach !== "undefined") {
-  const addEventListener = document.addEventListener;
-  const removeEventListener = document.removeEventListener;
+  const addEventListener = document.addEventListener
+  const removeEventListener = document.removeEventListener
 
   beforeEach(() => {
     document.addEventListener = vi.fn((event, cb) => {
-      triggerDocument[event] = cb;
-    });
+      triggerDocument[event] = cb
+    })
 
     document.removeEventListener = vi.fn((event) => {
-      delete triggerDocument[event];
-    });
-
-    (window as any).addEventListener = vi.fn((event, cb) => {
-      triggerWindow[event] = cb;
-    });
-
-    (window as any).removeEventListener = vi.fn((event) => {
-      delete triggerWindow[event];
-    });
-  });
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete triggerDocument[event]
+    })
+    ;(window as any).addEventListener = vi.fn((event, cb) => {
+      triggerWindow[event] = cb
+    })
+    ;(window as any).removeEventListener = vi.fn((event) => {
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete triggerWindow[event]
+    })
+  })
 
   afterEach(() => {
-    document.addEventListener = addEventListener;
-    document.removeEventListener = removeEventListener;
-  });
+    document.addEventListener = addEventListener
+    document.removeEventListener = removeEventListener
+  })
 }
 
 export const sleep = (ms: number): Promise<unknown> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}

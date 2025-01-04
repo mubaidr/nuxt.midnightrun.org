@@ -1,5 +1,34 @@
-.app {
+@use "./scrollbar.scss";
+@use "./filter-control.scss";
+@use "./transitions/cards.scss";
+@use "./transitions/fade.scss";
+@use "./transitions/general.scss";
+@use "./transitions/layout.scss";
+@use "./transitions/list.scss";
+@use "./transitions/page.scss";
+
+body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: Roboto, sans-serif;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  @apply py-6;
+}
+
+.prose h1:has(+ p),
+.prose h2:has(+ p),
+.prose h3:has(+ p),
+.prose h4:has(+ p),
+.prose h5:has(+ p),
+.prose h6:has(+ p) {
+  margin-bottom: 0;
 }

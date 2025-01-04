@@ -1,14 +1,16 @@
-import path from "path";
+import path from "path"
 
-const IS_DEV = process.env.NODE_ENV === "development";
+const IS_DEV = process.env.NODE_ENV === "development"
 
 export default defineNuxtConfig({
   alias: {
     "~~": path.resolve(__dirname, "./"),
     "~": path.resolve(__dirname, "./"),
     app: path.resolve(__dirname, "./app"),
-    server: path.resolve(__dirname, "./server"),
     assets: path.resolve(__dirname, "./app/assets"),
+    styles: path.resolve(__dirname, "./app/assets/styles"),
+    database: path.resolve(__dirname, "./database"),
+    server: path.resolve(__dirname, "./server"),
     public: path.resolve(__dirname, "./public"),
     test: path.resolve(__dirname, "./test"),
   },
@@ -27,6 +29,9 @@ export default defineNuxtConfig({
   //   },
   // },
   compatibilityDate: "2025-01-01",
+  components: {
+    dirs: ["app/components/**"],
+  },
   css: ["app/assets/global.scss"],
   colorMode: {
     preference: "system", // default theme
@@ -35,6 +40,12 @@ export default defineNuxtConfig({
     storage: "cookie",
   },
   content: {},
+  delayHydration: {
+    // enables nuxt-delay-hydration in dev mode for testing
+    // NOTE: you should disable this once you've finished testing, it will break HMR
+    debug: process.env.NODE_ENV === "development",
+    mode: "mount",
+  },
   devtools: {
     enabled: IS_DEV,
 
@@ -53,7 +64,6 @@ export default defineNuxtConfig({
   },
   future: {
     compatibilityVersion: 4,
-    typescriptBundlerResolution: true,
   },
   i18n: {
     baseUrl: process.env.BASE_URL,
@@ -61,7 +71,12 @@ export default defineNuxtConfig({
     vueI18n: "app/plugins/vue-i18n/vue-i18n.ts",
     // Don't forget to update the extract-i18n-script
     locales: [
-      { code: "en-US", iso: "en-US", file: "en-US.json", isCatchallLocale: true },
+      {
+        code: "en-US",
+        iso: "en-US",
+        file: "en-US.json",
+        isCatchallLocale: true,
+      },
       { code: "de-DE", iso: "de-DE", file: "de-DE.json" },
     ],
     defaultLocale: "en-US",
@@ -92,22 +107,35 @@ export default defineNuxtConfig({
     },
   },
   imports: {
-    dirs: ["app/composables/**", "app/stores/**"],
+    autoImport: true,
+    dirs: [
+      "app/composables/**",
+      "app/stores/**",
+      "server/utils/**",
+      "app/utils/**",
+    ],
     addons: {
       vueTemplate: true,
     },
+  },
+  lodash: {
+    prefix: "_",
   },
   modules: [
     "@nuxt/content",
     "@nuxt/devtools",
     "@nuxt/eslint",
+    "@nuxt/fonts",
     "@nuxt/image",
     "@nuxt/ui",
     "@nuxthq/studio",
     "@nuxtjs/i18n",
     "@nuxtjs/robots",
     "@pinia/nuxt",
+    "@vueuse/nuxt",
+    "nuxt-auth-utils",
     "nuxt-delay-hydration",
+    "nuxt-lodash",
     "nuxt-security",
   ],
   nitro: {
@@ -165,7 +193,14 @@ export default defineNuxtConfig({
         "script-src-attr": ["'none'"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],
         "upgrade-insecure-requests": true,
-        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'", "'wasm-unsafe-eval'", "data:", "blob:"],
+        "script-src": [
+          "'self'",
+          "'unsafe-inline'",
+          "'unsafe-eval'",
+          "'wasm-unsafe-eval'",
+          "data:",
+          "blob:",
+        ],
       },
       originAgentCluster: "?1",
       referrerPolicy: "no-referrer",
@@ -234,4 +269,4 @@ export default defineNuxtConfig({
       },
     },
   },
-});
+})

@@ -1,5 +1,5 @@
-import { addons } from "@storybook/manager-api";
-import { create } from "@storybook/theming/create";
+import { addons } from "@storybook/manager-api"
+import { create } from "@storybook/theming/create"
 
 addons.setConfig({
   isFullscreen: false,
@@ -29,4 +29,4 @@ addons.setConfig({
     themeSwitcher: { hidden: false },
     viewport: { hidden: false },
   },
-});
+})

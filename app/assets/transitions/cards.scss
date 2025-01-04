@@ -1,0 +1,19 @@
+.cards-enter-active,
+.cards-leave-active {
+  transition: all 500ms ease;
+  transition-delay: 250ms;
+}
+
+.cards-enter-from {
+  opacity: 0;
+  transform: scale(1.125);
+}
+
+.cards-leave-to {
+  opacity: 0;
+  transform: scale(0.875);
+}
+
+.cards-leave-active {
+  transition-delay: 0;
+}
