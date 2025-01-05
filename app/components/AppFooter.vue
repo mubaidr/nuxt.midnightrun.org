@@ -1,36 +1,36 @@
 <script setup lang="ts">
 const links = [
   {
-    label: "Resources",
+    // label: "Resources",
     children: [
       {
-        label: "Help Center",
-        to: "/help",
+        label: "Our Story",
+        to: "/our-story",
       },
       {
-        label: "Frequency Asked Questions (FAQs)",
-        to: "/about",
+        label: "How It Works",
+        to: "/how-it-works",
       },
       {
-        label: "Privacy Policy",
-        to: "/privacy-policy",
+        label: "Our Policies",
+        to: "/our-policies",
       },
     ],
   },
   {
-    label: "Company",
+    // label: "Company",
     children: [
       {
-        label: "About",
-        to: "/about",
+        label: "Contribute",
+        to: "/contribute",
       },
       {
-        label: "Our Mission",
-        to: "/mission",
+        label: "Staff/ Board",
+        to: "/staff",
       },
       {
-        label: "Open Vacancies",
-        to: "/vacancy",
+        label: "Street Resources",
+        to: "/street-resources",
       },
     ],
   },
@@ -57,7 +57,7 @@ function onSubmit() {
 
 <template>
   <footer
-    class="mx-auto max-w-screen-xl px-6 pb-6 text-sm text-gray-700 md:px-12 dark:text-gray-200"
+    class="mx-auto max-w-screen-xl px-6 pb-6 text-gray-700 md:px-12 dark:text-gray-200"
   >
     <UDivider />
     <div class="flex flex-col justify-between gap-2 md:flex-row">

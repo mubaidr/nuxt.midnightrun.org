@@ -5,8 +5,18 @@ const { loggedIn } = useUserSession()
 const links: Array<Array<DropdownItem>> = [
   [
     {
-      label: "About",
-      to: "/about",
+      label: "Our Story",
+      to: "/our-story",
+      activeClass: "text-primary",
+    },
+    {
+      label: "How It Works",
+      to: "/how-it-works",
+      activeClass: "text-primary",
+    },
+    {
+      label: "Contribute",
+      to: "/contribute",
       activeClass: "text-primary",
     },
   ],
@@ -74,7 +84,7 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
 
         <UButton
           v-if="!loggedIn"
-          label="Apply Now"
+          label="Get Started"
           icon="i-ph-arrow-right"
           trailing
           color="primary"
@@ -98,7 +108,7 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
         </div>
 
         <ThemeSwitch />
-        <LocaleSwitch />
+        <!-- <LocaleSwitch /> -->
 
         <div
           v-if="loggedIn"

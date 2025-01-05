@@ -1,10 +1,4 @@
 <script setup lang="ts">
-const filter = ref("")
-
-async function onSubmit() {
-  navigateTo(`/vacancy?filter=${filter.value}`)
-}
-
 definePageMeta({
   auth: false,
 })
@@ -12,10 +6,6 @@ definePageMeta({
 
 <template>
   <div>
-    <NewsList />
-
-    <br />
-
     <section>
       <div class="text-center">
         <div class="prose dark:prose-invert">
@@ -76,8 +66,6 @@ definePageMeta({
           veniam consectetur.
         </p>
       </div>
-
-      <InstructionList />
     </section>
   </div>
 </template>
