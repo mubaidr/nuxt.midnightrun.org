@@ -125,7 +125,7 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/devtools",
     "@nuxt/eslint",
-    "@nuxt/fonts",
+    // "@nuxt/fonts",
     "@nuxt/image",
     "@nuxt/ui",
     "@nuxthq/studio",
