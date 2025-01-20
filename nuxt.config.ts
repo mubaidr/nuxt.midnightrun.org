@@ -40,12 +40,12 @@ export default defineNuxtConfig({
     storage: "cookie",
   },
   content: {},
-  delayHydration: {
-    // enables nuxt-delay-hydration in dev mode for testing
-    // NOTE: you should disable this once you've finished testing, it will break HMR
-    debug: process.env.NODE_ENV === "development",
-    mode: "mount",
-  },
+  // delayHydration: {
+  //   // enables nuxt-delay-hydration in dev mode for testing
+  //   // NOTE: you should disable this once you've finished testing, it will break HMR
+  //   debug: process.env.NODE_ENV === "development",
+  //   mode: "mount",
+  // },
   devtools: {
     enabled: IS_DEV,
 
@@ -130,13 +130,13 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxthq/studio",
     "@nuxtjs/i18n",
-    "@nuxtjs/robots",
+    // "@nuxtjs/robots",
     "@pinia/nuxt",
     "@vueuse/nuxt",
     "nuxt-auth-utils",
-    "nuxt-delay-hydration",
+    // "nuxt-delay-hydration",
     "nuxt-lodash",
-    "nuxt-security",
+    // "nuxt-security",
   ],
   nitro: {
     compressPublicAssets: true,
@@ -170,6 +170,7 @@ export default defineNuxtConfig({
     },
   },
   robots: {
+    enabled: !IS_DEV,
     groups: [
       {
         userAgent: "*",
@@ -178,35 +179,35 @@ export default defineNuxtConfig({
       },
     ],
   },
-  routeRules: {
-    "/": {
-      prerender: true,
-    },
-    "/about": {
-      prerender: true,
-    },
-    "/contact": {
-      prerender: true,
-    },
-    "/faqs": {
-      prerender: true,
-    },
-    "/help": {
-      prerender: true,
-    },
-    "/login": {
-      prerender: true,
-    },
-    "/privacy-policy": {
-      prerender: true,
-    },
-    "/register": {
-      prerender: true,
-    },
-    "/terms-of-service": {
-      prerender: true,
-    },
-  },
+  // routeRules: {
+  //   "/": {
+  //     prerender: true,
+  //   },
+  //   "/about": {
+  //     prerender: true,
+  //   },
+  //   "/contact": {
+  //     prerender: true,
+  //   },
+  //   "/faqs": {
+  //     prerender: true,
+  //   },
+  //   "/help": {
+  //     prerender: true,
+  //   },
+  //   "/login": {
+  //     prerender: true,
+  //   },
+  //   "/privacy-policy": {
+  //     prerender: true,
+  //   },
+  //   "/register": {
+  //     prerender: true,
+  //   },
+  //   "/terms-of-service": {
+  //     prerender: true,
+  //   },
+  // },
   security: {
     headers: {
       crossOriginResourcePolicy: "cross-origin",
@@ -267,7 +268,7 @@ export default defineNuxtConfig({
     enabled: !IS_DEV,
     csrf: true,
   },
-  ssr: true,
+  ssr: false,
   studio: {
     gitInfo: {
       name: "nuxt.midnightrun.org",
@@ -277,7 +278,7 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     editorSupport: true,
-    viewer: true,
+    viewer: false,
   },
   typescript: {
     tsConfig: {

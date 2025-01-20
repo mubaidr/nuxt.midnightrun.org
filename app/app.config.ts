@@ -2,7 +2,7 @@ export default defineAppConfig({
   ui: {
     // base colors
     primary: "green",
-    gray: "stone",
+    gray: "slate",
     // component defaults
     alert: {
       default: {
@@ -22,8 +22,8 @@ export default defineAppConfig({
     carousel: {
       item: "basis-full",
       indicators: {
-        active: "bg-stone-400 dark:bg-stone-600",
-        inactive: "bg-stone-200 dark:bg-stone-800",
+        active: "bg-slate-400 dark:bg-slate-600",
+        inactive: "bg-slate-200 dark:bg-slate-800",
       },
       default: {
         prevButton: {

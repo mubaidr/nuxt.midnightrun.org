@@ -11,7 +11,7 @@ const links: Array<Array<DropdownItem>> = [
     },
     {
       label: "How It Works",
-      to: "/how-it-works",
+      to: "/how-to-do-run",
       activeClass: "text-primary",
     },
     {
@@ -53,7 +53,7 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
 </script>
 
 <template>
-  <div class="bg-stone-50 dark:bg-stone-950">
+  <div class="bg-slate-50 dark:bg-slate-950">
     <nav
       class="mx-auto flex max-w-screen-xl items-center justify-between p-4 px-6 md:px-12"
     >
@@ -66,39 +66,37 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
           <img
             src="/images/logo.png"
             alt="logo"
-            class="h-10 w-10"
+            class="h-16 w-auto"
           />
-          <span class="text-xl font-bold">Midnight Run</span>
         </NuxtLink>
-      </div>
-
-      <!-- Middle: Links (Hidden on mobile, visible on md and larger) -->
-      <div class="hidden space-x-2 md:flex">
-        <UButton
-          v-for="link in links.flat()"
-          :key="link.label"
-          :to="link.to"
-          variant="ghost"
-          :label="link.label"
-        />
-
-        <UButton
-          v-if="!loggedIn"
-          label="Get Started"
-          icon="i-ph-arrow-right"
-          trailing
-          color="primary"
-          to="/login"
-          variant="outline"
-        />
       </div>
 
       <!-- Right: Login/Signup -->
       <div class="flex space-x-2 md:flex">
+        <!-- Middle: Links (Hidden on mobile, visible on md and larger) -->
+        <div class="hidden space-x-2 md:flex">
+          <UButton
+            v-if="!loggedIn"
+            label="Get Started"
+            icon="i-ph-arrow-right"
+            trailing
+            color="primary"
+            to="/login"
+            variant="outline"
+          />
+          <UButton
+            v-for="link in links.flat()"
+            :key="link.label"
+            :to="link.to"
+            variant="ghost"
+            :label="link.label"
+          />
+        </div>
+
         <div class="md:hidden">
           <UButton
             v-if="!loggedIn"
-            label="Apply Now"
+            label="Get Started"
             icon="i-ph-arrow-right"
             trailing
             color="primary"
@@ -106,9 +104,6 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
             variant="outline"
           />
         </div>
-
-        <ThemeSwitch />
-        <!-- <LocaleSwitch /> -->
 
         <div
           v-if="loggedIn"
@@ -133,5 +128,8 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
         </div>
       </div>
     </nav>
+    <div
+      class="h-1 bg-gradient-to-r from-purple-200 via-indigo-200 to-orange-200"
+    ></div>
   </div>
 </template>

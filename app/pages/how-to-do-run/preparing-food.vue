@@ -1,5 +1,5 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>Street Resources</div>
+  <div>preparing-food</div>
 </template>
