@@ -16,8 +16,7 @@ export const framework = {
   options: {},
 }
 export const core = {
-  disableTelemetry: true,
-  builder: "@storybook/builder-vite",
+  disableTelemetry: true
 }
 export const docs = {}
 export const features = {}

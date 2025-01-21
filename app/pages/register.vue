@@ -116,6 +116,7 @@ definePageMeta({
 
       <UButton
         type="submit"
+        color="primary"
         label="Create Account"
         block
         :loading="pending"

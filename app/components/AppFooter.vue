@@ -59,9 +59,9 @@ function onSubmit() {
 <template>
   <div class="bg-slate-50 text-gray-700 dark:bg-slate-950 dark:text-gray-200">
     <div
-      class="h-1 bg-gradient-to-r from-purple-200 via-indigo-200 to-orange-200"
+      class="h-1 bg-gradient-to-r from-purple-200 via-indigo-200 to-orange-200 dark:from-purple-800 dark:via-indigo-800 dark:to-orange-800"
     ></div>
-    <footer class="mx-auto max-w-screen-xl px-6 pb-6 md:px-12">
+    <footer class="mx-auto max-w-screen-xl px-6 pb-6 text-sm md:px-12">
       <div class="flex flex-col justify-between gap-2 md:flex-row">
         <div
           v-for="section in links"

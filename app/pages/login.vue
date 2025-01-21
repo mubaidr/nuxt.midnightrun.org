@@ -92,6 +92,7 @@ definePageMeta({
       <UButton
         type="submit"
         label="Login"
+        color="primary"
         block
         :loading="pending"
       />

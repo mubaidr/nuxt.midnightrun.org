@@ -129,7 +129,7 @@ const dropdownLinks = computed<Array<Array<DropdownItem>>>(() => {
       </div>
     </nav>
     <div
-      class="h-1 bg-gradient-to-r from-purple-200 via-indigo-200 to-orange-200"
+      class="h-1 bg-gradient-to-r from-purple-200 via-indigo-200 to-orange-200 dark:from-purple-800 dark:via-indigo-800 dark:to-orange-800"
     ></div>
   </div>
 </template>
